@@ -6,7 +6,15 @@ Install gems on Gemfile.
 $ bundle install
 ```
 
-# Mars Rover
+## Solution
+
+To check for the solution, just type this command on your Terminal.
+
+```sh
+$ ruby lib/mars_rover.rb
+```
+
+# Mars Rover Problem
 
 A squad of robotic rovers is to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their onboard cameras can get a complete view of the surrounding terrain to send back to Earth.
 
