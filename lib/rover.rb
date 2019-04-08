@@ -31,9 +31,9 @@ class Rover
   
   def move
     case @orientation_letter
-      when 'N' then @current_height += 1 if @current_height < plateau.max_height
+      when 'N' then @current_height += 1 if @current_height < plateau.grid_height
       when 'S' then @current_height -= 1 if @current_height > 0
-      when 'E' then @current_width += 1 if @current_width < plateau.max_width
+      when 'E' then @current_width += 1 if @current_width < plateau.grid_width
       when 'W' then @current_width -= 1 if @current_width > 0
     end
   end
