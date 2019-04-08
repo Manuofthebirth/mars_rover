@@ -1,9 +1,9 @@
 class Plateau
-  attr_reader :max_width, :max_height
+  attr_reader :grid_width, :grid_height
 
-  def initialize (max_width = 5, max_height = 5)
-    @max_width = max_width
-    @max_height = max_height
+  def initialize (grid_width = 5, grid_height = 5)
+    @grid_width = grid_width
+    @grid_height = grid_height
   end
   
 end
