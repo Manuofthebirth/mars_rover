@@ -2,7 +2,7 @@ require 'spec_helper'
 require_relative '../lib/app'
 
 describe App do
-  subject(:rover) { App.new(Rover.new(current_width = 0, current_height = 0, orientation_letter = "N")) }
+  subject(:rover) { App.new(Rover.new(0, 0, "N")) }
 
   describe 'Deploy Rover' do  
     it 'starts without raising an error' do
@@ -15,7 +15,7 @@ end
 # starting_position >>> expect 0 0 'N'
 # current_width >> must be integer (.class)
 # current_height >> must be integer (.class)
-# orientation_letter >> must be a string (.class)
+# orientation_letter >> must be a string (.class) + must not be empty
 # orientation_letter >> can only accept cardinal points [N, S, E, W] (capital letter)
 
 # movement_command >> expect 'LMLMLMLMM' + 1 2 'N' to return 1 3 'N'
