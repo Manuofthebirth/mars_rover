@@ -2,7 +2,7 @@ require 'spec_helper'
 require_relative '../lib/app'
 
 describe App do
-  subject(:rover) { App.new(Rover.new(0, 0, "N")) }
+  let(:rover) { App.new(Rover.new(0, 0, 'N', Plateau.new(5, 5))) }
 
   describe 'Deploy Rover' do  
     it 'starts without raising an error' do
@@ -23,6 +23,7 @@ end
 
 # movement_command(movement_input)
 # movement_command('LMLMLMLMM') >> 'L M L M L M L M M' (rover must receive your commands individually)
+# movement_command('LMLM LMLMM') >> 'L M L M L M L M M' (it ignores empty spaces inside a input)
 
 
 # send_another >> all rovers must behave the same way
