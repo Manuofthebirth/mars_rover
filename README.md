@@ -1,6 +1,6 @@
 ## Setup
 
-Install gems on Gemfile.
+Install gems from Gemfile.
 
 ```sh
 $ bundle install
@@ -8,7 +8,7 @@ $ bundle install
 
 ## Solution
 
-To check for the solution, just type this command on your Terminal.
+To check for the solution, just type this command on your Terminal while inside <strong>mars_rover</strong> folder.
 
 ```sh
 $ ruby lib/mars_rover.rb

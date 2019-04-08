@@ -29,21 +29,21 @@ class App
     rover.current_width = gets.chomp.to_i
     puts 'Now assign the starting point for your rover (height):'
     rover.current_height = gets.chomp.to_i
-    puts 'And now assign an orientation letter for your rover (N, S, E or W):'
-    orientation = gets.chomp # if orientation is not a cardinal point >> Please type N, S, E or W
-    rover.orientation_letter = orientation.upcase
-    puts "\n***************************************************"
-    puts "Thank you! Your rover starting position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
-    puts '***************************************************'
+    puts 'And now assign an cardinal point initial for your rover (N, S, E or W):'
+    cardinal_point = gets.chomp # while orientation is not a cardinal point >> Please type N, S, E or W
+    rover.orientation_letter = cardinal_point.upcase
+    puts "\n*****************************************************"
+    puts "Thank you! Your rover's starting position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
+    puts '*****************************************************'
   end
 
   def print_commands
-    puts "\n****************************************************************"
+    puts "\n*************************************************************************************"
     puts 'Lastly, insert the movement commands for your rover (ex: MRML) or press ENTER to exit :'
     puts 'M - Move forward'
     puts 'R - Turn right'
     puts 'L - Turn left'
-    puts '****************************************************************'
+    puts '*************************************************************************************'
   end
 
   def movement_commands(movement_inputs)
@@ -51,16 +51,16 @@ class App
     movements_sequence = movements.join
     movements_sequence.each_char do |input|
       case input
-      when 'M' then @rover.move
+      when 'M' then @rover.move_foward
       when 'R' then @rover.turn_right
       when 'L' then @rover.turn_left
       else
         puts "Please type M, R, L or press ENTER to exit"
       end
     end
-    puts "\n**********************************************************"
-    puts "Gotcha! Your rover current position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
-    puts "**********************************************************"
+    puts "\n************************************************************"
+    puts "Gotcha! Your rover's current position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
+    puts "************************************************************"
   end
 
   # def send_another

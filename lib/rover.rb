@@ -29,7 +29,7 @@ class Rover
     end
   end
   
-  def move
+  def move_foward
     case @orientation_letter
       when 'N' then @current_height += 1 if @current_height < plateau.grid_height
       when 'S' then @current_height -= 1 if @current_height > 0
