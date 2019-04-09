@@ -1,9 +1,9 @@
 class Plateau
-  attr_accessor :grid_width, :grid_height
+  attr_accessor :x_limit, :y_limit
 
-  def initialize(grid_width = 5, grid_height = 5)
-    @grid_width = grid_width
-    @grid_height = grid_height
+  def initialize(x_limit = 5, y_limit = 5)
+    @x_limit = x_limit
+    @y_limit = y_limit
   end
   
 end

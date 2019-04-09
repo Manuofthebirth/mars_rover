@@ -9,17 +9,17 @@ describe Rover do
 
     it "faces EAST when turning right" do
       rover.turn_right
-      expect(rover.orientation_letter).to eq 'E'
+      expect(rover.compass_point).to eq 'E'
     end
 
     it "faces WEST when turning left" do
       rover.turn_left
-      expect(rover.orientation_letter).to eq 'W'
+      expect(rover.compass_point).to eq 'W'
     end
 
     it "respects the grid limits" do
       rover.move_foward
-      expect(rover.current_height).to eq 4
+      expect(rover.y_coordinate).to eq 4
     end
   end
 
@@ -28,17 +28,17 @@ describe Rover do
 
     it "faces WEST when turning right" do
       rover.turn_right
-      expect(rover.orientation_letter).to eq 'W'
+      expect(rover.compass_point).to eq 'W'
     end
 
     it "faces EAST when turning left" do
       rover.turn_left
-      expect(rover.orientation_letter).to eq 'E'
+      expect(rover.compass_point).to eq 'E'
     end
 
     it "respects the grid limits" do
       rover.move_foward
-      expect(rover.current_height).to eq 0
+      expect(rover.y_coordinate).to eq 0
     end
   end
 
@@ -47,17 +47,17 @@ describe Rover do
 
     it "faces SOUTH when turning right" do
       rover.turn_right
-      expect(rover.orientation_letter).to eq 'S'
+      expect(rover.compass_point).to eq 'S'
     end
 
     it "faces NORTH when turning left" do
       rover.turn_left
-      expect(rover.orientation_letter).to eq 'N'
+      expect(rover.compass_point).to eq 'N'
     end
 
     it "respects the grid limits" do
       rover.move_foward
-      expect(rover.current_width).to eq 3
+      expect(rover.x_coordinate).to eq 3
     end
   end
 
@@ -66,17 +66,17 @@ describe Rover do
 
     it "faces NORTH when turning right" do
       rover.turn_right
-      expect(rover.orientation_letter).to eq 'N'
+      expect(rover.compass_point).to eq 'N'
     end
 
     it "faces SOUTH when turning left" do
       rover.turn_left
-      expect(rover.orientation_letter).to eq 'S'
+      expect(rover.compass_point).to eq 'S'
     end
 
     it "respects the grid limits" do
       rover.move_foward
-      expect(rover.current_width).to eq 0
+      expect(rover.x_coordinate).to eq 0
     end
   end
 
