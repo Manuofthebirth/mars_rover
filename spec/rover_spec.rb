@@ -5,7 +5,6 @@ describe Rover do
   
   describe 'Facing North' do
     let(:rover) { Rover.new(1, 4, 'N', Plateau.new(3, 4)) }
-    # let(:rover) { Rover.new(1, 4, 'N', Plateau.new(3, 4)) }
 
     it "faces EAST when turning right" do
       rover.turn_right
