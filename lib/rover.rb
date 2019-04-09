@@ -2,39 +2,39 @@ require_relative "plateau"
 
 class Rover
   attr_reader :plateau
-  attr_accessor :current_width, :current_height, :orientation_letter
+  attr_accessor :x_coordinate, :y_coordinate, :compass_point
 
-  def initialize (current_width = 0, current_height = 0, orientation_letter = 'N', plateau)
-    @current_width = current_width
-    @current_height = current_height
-    @orientation_letter = orientation_letter
+  def initialize (x_coordinate = 0, y_coordinate = 0, compass_point = 'N', plateau)
+    @x_coordinate = x_coordinate
+    @y_coordinate = y_coordinate
+    @compass_point = compass_point
     @plateau = plateau
   end
 
   def turn_right
-    case @orientation_letter
-      when 'N' then @orientation_letter = 'E'
-      when 'S' then @orientation_letter = 'W'
-      when 'E' then @orientation_letter = 'S'
-      when 'W' then @orientation_letter = 'N'
+    case @compass_point
+      when 'N' then @compass_point = 'E'
+      when 'S' then @compass_point = 'W'
+      when 'E' then @compass_point = 'S'
+      when 'W' then @compass_point = 'N'
     end
   end
 
   def turn_left
-    case @orientation_letter
-      when 'N' then @orientation_letter = 'W'
-      when 'S' then @orientation_letter = 'E'
-      when 'E' then @orientation_letter = 'N'
-      when 'W' then @orientation_letter = 'S'
+    case @compass_point
+      when 'N' then @compass_point = 'W'
+      when 'S' then @compass_point = 'E'
+      when 'E' then @compass_point = 'N'
+      when 'W' then @compass_point = 'S'
     end
   end
   
   def move_foward
-    case @orientation_letter
-      when 'N' then @current_height += 1 if @current_height < plateau.grid_height
-      when 'S' then @current_height -= 1 if @current_height > 0
-      when 'E' then @current_width += 1 if @current_width < plateau.grid_width
-      when 'W' then @current_width -= 1 if @current_width > 0
+    case @compass_point
+      when 'N' then @y_coordinate += 1 if @y_coordinate < plateau.y_limit
+      when 'S' then @y_coordinate -= 1 if @y_coordinate > 0
+      when 'E' then @x_coordinate += 1 if @x_coordinate < plateau.x_limit
+      when 'W' then @x_coordinate -= 1 if @x_coordinate > 0
     end
   end
 

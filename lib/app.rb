@@ -20,8 +20,8 @@ class App
       movement_inputs = gets.chomp
       set_movement(movement_inputs)
       status_report 
-      answer = gets.chomp.downcase
-      if answer == 'stop'
+      answer = gets.chomp.upcase
+      if answer == 'STOP'
         break
       end
       send_another(answer)
@@ -32,31 +32,29 @@ class App
 
   def set_grid
     puts "\nLet's define the Plateau grid size first. What's the grid width limit (x coordinate)?"
-    x_limit = gets.chomp.to_i
-    x_limit <= 0 ? plateau.grid_width = 5 : plateau.grid_width = x_limit
+    max_x = gets.chomp.to_i
+    max_x <= 0 ? plateau.x_limit = 5 : plateau.x_limit = max_x
 
     puts "And what's the grid height limit (y coordinate)?"
-    y_limit = gets.chomp.to_i
-    y_limit <= 0 ? plateau.grid_height = 5 : plateau.grid_height = y_limit
+    max_y = gets.chomp.to_i
+    max_y <= 0 ? plateau.y_limit = 5 : plateau.y_limit = max_y
 
-    puts "\n*************************************************************"
-    puts "Ok! The Plateau grid limits are: #{plateau.grid_width} (x: width) #{plateau.grid_height} (y: height) !"
-    puts "*************************************************************"
+    puts "\n> Ok! The Plateau grid limits are: #{plateau.x_limit} (x: width) #{plateau.y_limit} (y: height) ! <"
     puts"\n{CRASH!!!}"
   end
 
   def set_x_position
-    puts "\nAgh! My lens are broken! What's my x coordinate (width)? (max value: #{plateau.grid_width})"
+    puts "\nAgh! My lens are broken! What's my x coordinate (width)? (max value: #{plateau.x_limit})"
     x_input = gets.chomp.to_i
-    x_input > plateau.grid_width ? rover.current_width = plateau.grid_width : rover.current_width = x_input
-    user_inputs[0] = rover.current_width
+    x_input > plateau.x_limit ? rover.x_coordinate = plateau.x_limit : rover.x_coordinate = x_input
+    user_inputs[0] = rover.x_coordinate
   end
 
   def set_y_position
-    puts "And what's my y coordinate (height)? (max value: #{plateau.grid_height})"
+    puts "And what's my y coordinate (height)? (max value: #{plateau.y_limit})"
     y_input = gets.chomp.to_i
-    y_input > plateau.grid_height ? rover.current_height = plateau.grid_height : rover.current_height = y_input
-    user_inputs[1] = rover.current_height
+    y_input > plateau.y_limit ? rover.y_coordinate = plateau.y_limit : rover.y_coordinate = y_input
+    user_inputs[1] = rover.y_coordinate
   end
 
   def set_orientation
@@ -64,20 +62,18 @@ class App
 
     puts "Got it! But...where am I facing? (Assign a cardinal compass point for the rover ~> N, S, E or W)"
     letter_input = gets.chomp.upcase 
-    valid_letters.include?(letter_input) ? rover.orientation_letter = letter_input : rover.orientation_letter = valid_letters.sample
-    user_inputs[2] = rover.orientation_letter
-    puts "\n*********************************************************"
-    puts "I can see it clearly now! My starting position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
-    puts '*********************************************************'
+    valid_letters.include?(letter_input) ? rover.compass_point = letter_input : rover.compass_point = valid_letters.sample
+    user_inputs[2] = rover.compass_point
+    puts "\n> I can see it clearly now! My starting position is: #{rover.x_coordinate} #{rover.y_coordinate} #{rover.compass_point} ! <"
   end
 
   def print_commands
-    puts "\n*************************************************************************************"
-    puts "All set! What's my command sequence? You can choose any from among these (ex: MRML) :"
+    puts "\n************************************************"
+    puts "All set! What's my command sequence (ex: MRML) ?"
     puts 'M - Move forward'
     puts 'R - Turn right'
     puts 'L - Turn left'
-    puts '*************************************************************************************'
+    puts '************************************************'
   end
 
   def set_movement(movement_inputs)
@@ -96,13 +92,13 @@ class App
   end
 
   def status_report 
-    puts "\n************************************************************"
+    puts "\n************************************************"
     puts "Gotcha! Let's recap now. These were your inputs:"
-    puts "\nPlateau grid size (x y): #{plateau.grid_width} #{plateau.grid_height}"
+    puts "\nPlateau grid size (x y): #{plateau.x_limit} #{plateau.y_limit}"
     puts "Rover's starting position: #{user_inputs[0]} #{user_inputs[1]} #{user_inputs[2]}"
     puts "Movement commands you issued: #{user_inputs[3]}"
-    puts "And this is my final position: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
-    puts "************************************************************"
+    puts "And this is my final position: #{rover.x_coordinate} #{rover.y_coordinate} #{rover.compass_point} !"
+    puts "************************************************"
     puts "\nI'm going away now but I'm sending another rover to this grid unless you type STOP."
   end
 
