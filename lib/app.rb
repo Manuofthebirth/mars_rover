@@ -20,8 +20,8 @@ class App
       movement_inputs = gets.chomp
       set_movement(movement_inputs)
       status_report 
-      answer = gets.chomp.downcase
-      if answer == 'stop'
+      answer = gets.chomp.upcase
+      if answer == 'STOP'
         break
       end
       send_another(answer)
