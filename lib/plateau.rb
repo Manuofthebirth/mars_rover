@@ -1,7 +1,7 @@
 class Plateau
-  attr_reader :grid_width, :grid_height
+  attr_accessor :grid_width, :grid_height
 
-  def initialize (grid_width = 5, grid_height = 5)
+  def initialize(grid_width = 5, grid_height = 5)
     @grid_width = grid_width
     @grid_height = grid_height
   end
