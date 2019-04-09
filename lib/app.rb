@@ -31,7 +31,7 @@ class App
   private
 
   def set_grid
-    puts "\nLet's define the Plateau size first. What's the grid width limit (x coordinate)?"
+    puts "\nLet's define the Plateau grid size first. What's the grid width limit (x coordinate)?"
     x_limit = gets.chomp.to_i
     x_limit <= 0 ? plateau.grid_width = 5 : plateau.grid_width = x_limit
 
@@ -60,10 +60,11 @@ class App
   end
 
   def set_orientation
-    valid_letters = ["n", "s", "e", "w"]
+    valid_letters = ["N", "S", "E", "W"]
 
-    puts "Got it! But...where am I facing? (Assign a cardinal point letter for the rover ~> N, S, E or W)"
-    rover.orientation_letter = gets.chomp.upcase # while orientation is not a cardinal point >> Please type N, S, E or W
+    puts "Got it! But...where am I facing? (Assign a cardinal compass point for the rover ~> N, S, E or W)"
+    letter_input = gets.chomp.upcase 
+    valid_letters.include?(letter_input) ? rover.orientation_letter = letter_input : rover.orientation_letter = valid_letters.sample
     user_inputs[2] = rover.orientation_letter
     puts "\n*********************************************************"
     puts "I can see it clearly now! My starting position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
