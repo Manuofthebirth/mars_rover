@@ -2,12 +2,12 @@ require_relative "plateau"
 require_relative "rover"
 
 class App
-  attr_accessor :rover, :plateau, :position_inputs
+  attr_accessor :rover, :plateau, :user_inputs
 
   def initialize(rover, plateau)
     @rover = rover
     @plateau = plateau
-    @position_inputs = []
+    @user_inputs = []
   end
 
   def run
@@ -49,14 +49,14 @@ class App
     puts "\nAgh! My lens are broken! What's my x coordinate (width)? (max value: #{plateau.grid_width})"
     x_input = gets.chomp.to_i
     x_input > plateau.grid_width ? rover.current_width = plateau.grid_width : rover.current_width = x_input
-    position_inputs[0] = rover.current_width
+    user_inputs[0] = rover.current_width
   end
 
   def set_y_position
     puts "And what's my y coordinate (height)? (max value: #{plateau.grid_height})"
     y_input = gets.chomp.to_i
     y_input > plateau.grid_height ? rover.current_height = plateau.grid_height : rover.current_height = y_input
-    position_inputs[1] = rover.current_height
+    user_inputs[1] = rover.current_height
   end
 
   def set_orientation
@@ -64,7 +64,7 @@ class App
 
     puts "Got it! But...where am I facing? (Assign a cardinal point letter for the rover ~> N, S, E or W)"
     rover.orientation_letter = gets.chomp.upcase # while orientation is not a cardinal point >> Please type N, S, E or W
-    position_inputs[2] = rover.orientation_letter
+    user_inputs[2] = rover.orientation_letter
     puts "\n*********************************************************"
     puts "I can see it clearly now! My starting position is: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
     puts '*********************************************************'
@@ -82,9 +82,10 @@ class App
   def set_movement(movement_inputs)
     movements = []
 
-    movements << movement_inputs.upcase
-    position_inputs[3] = movements.join
-    position_inputs[3].each_char do |input|
+    movement_inputs.split('').each { |i| movements << i.upcase }
+    valid_commands = movements.select { |m| m =~ /[MRL]/ } 
+    user_inputs[3] = valid_commands.join
+    user_inputs[3].each_char do |input|
       case input
       when 'M' then @rover.move_foward
       when 'R' then @rover.turn_right
@@ -97,16 +98,15 @@ class App
     puts "\n************************************************************"
     puts "Gotcha! Let's recap now. These were your inputs:"
     puts "\nPlateau grid size (x y): #{plateau.grid_width} #{plateau.grid_height}"
-    puts "Rover's starting position: #{position_inputs[0]} #{position_inputs[1]} #{position_inputs[2]}"
-    puts "Movement commands you issued: #{position_inputs[3]}"
+    puts "Rover's starting position: #{user_inputs[0]} #{user_inputs[1]} #{user_inputs[2]}"
+    puts "Movement commands you issued: #{user_inputs[3]}"
     puts "And this is my final position: #{rover.current_width} #{rover.current_height} #{rover.orientation_letter} !"
     puts "************************************************************"
-    puts "\nI'm going away now but I'm sending another rover to this grid unless you type 'STOP'. "
+    puts "\nI'm going away now but I'm sending another rover to this grid unless you type STOP."
   end
 
   def send_another(answer)
-    puts "\nOk then! Sending a new rover in 3...2..1"
-    puts "\nNew rover: Hi there! {CRASH!!!}"
+    puts "\nOk then! Sending a new rover in 3...2..1; New rover: Hi there! {CRASH!!!}"
   end
 
 end
